@@ -6,7 +6,7 @@ let finish = false;
 const digit = ['0', '00', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
 const action = ['-', '+', 'X', '/', '%'];
 
-const out = document.querySelector('.calc-screen p');
+const out = document.querySelector('.current-operand');
 
 function clearAll() {
     num1 = '';
@@ -19,9 +19,25 @@ document.querySelector('.ac').onclick = clearAll;
 
 function deleteLast() {
     console.log('delete');
-    if(num2 !== '') {
-        num2 = num2.slice(0, -1);
-        out.textContent = num2;
+    if (finish) {
+        num1 = '';
+        num2 = '';
+        sign = '';
+        out.textContent = 0;
+        finish = false;
+    }
+    else if(num2 !== '') {
+        if (num2.length === 1) {
+            num2 = num2.slice(0, -1);
+            out.textContent = sign;
+        } else {
+            num2 = num2.slice(0, -1);
+            out.textContent = num2;
+        }
+    }
+    else if(num2 === '' && sign !== '') {
+        sign = sign.slice(0, -1);
+        out.textContent = num1;
     }
     else if (num1 !== '') {
         num1 = num1.slice(0, -1);
@@ -60,9 +76,14 @@ document.querySelector('.buttons').onclick = (event) => {
     }
 
     if(action.includes(key)) {
-        sign = key;
-        out.textContent = sign;
-        console.log(num1, num2, sign);
+        if (!isNaN(num1)) {
+            sign = key;
+            out.textContent = sign;
+            console.log(num1, num2, sign);
+        }
+        else {
+            clearAll();
+        }
         return;
     }
 
@@ -86,10 +107,10 @@ document.querySelector('.buttons').onclick = (event) => {
                     sign = '';
                     return;
                 }
-                num1 = num1 / num2;
+                num1 = parseFloat((num1 / num2).toFixed(2));
                 break;
             case "%":
-                num1 = (num1 / 100) * num2;
+                num1 = parseFloat(((num1 / 100) * num2).toFixed(2));
                 break;
         }
         finish = true;
