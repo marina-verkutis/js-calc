@@ -60,23 +60,27 @@ document.querySelector('.buttons').onclick = (event) => {
         if(num2 === '' && sign === '') {
             num1 += key;
             console.log(num1, num2, sign);
-            out.textContent = num1;
+            out.textContent = num1.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
         }
         else if (num1 !== '' && num2 !== '' && finish) {
             num2 = key;
             finish = false;
-            out.textContent = num2;
+            out.textContent = num2.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
         }
         else {
             num2 += key;
-            out.textContent = num2;
+            out.textContent = num2.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
         }
         console.log(num1, num2, sign);
         return;
     }
 
     if(action.includes(key)) {
-        if (!isNaN(num1)) {
+        if (num1 === '' && key === '-'){
+            num1 += key;
+            out.textContent = num1;
+        }
+        else if (!isNaN(num1)) {
             sign = key;
             out.textContent = sign;
             console.log(num1, num2, sign);
@@ -97,13 +101,13 @@ document.querySelector('.buttons').onclick = (event) => {
             if(num2 === '') num2 = num1;
             switch (sign) {
                 case "+":
-                    num1 = (+num1) + (+num2);
+                    num1 = parseFloat(((+num1) + (+num2)).toFixed(2));
                     break;
                 case "-":
-                    num1 = num1 - num2;
+                    num1 = parseFloat((num1 - num2).toFixed(2));
                     break;
                 case "X":
-                    num1 = num1 * num2;
+                    num1 = parseFloat((num1 * num2).toFixed(2));
                     break;
                 case "/":
                     if(num2.replace(/0*$/,"") === '') {
@@ -120,7 +124,7 @@ document.querySelector('.buttons').onclick = (event) => {
                     break;
             }
             finish = true;
-            out.textContent = num1;
+            out.textContent = num1.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
         }
         
         
