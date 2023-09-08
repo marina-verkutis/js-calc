@@ -88,7 +88,7 @@ document.querySelector('.buttons').onclick = (event) => {
     }
 
     if(key === '=') {
-        if (isNaN(num1)) {
+        if (isNaN(num1) || isNaN(num2)) {
             sign = '';
             num1 = '';
             out.textContent = 0;
