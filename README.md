@@ -2,4 +2,5 @@
 
 Доступен по ссылке: https://marina-verkutis.github.io/js-calc/
 
-<img src="[img_girl.jpg](https://github.com/marina-verkutis/js-calc/assets/124586787/af29183f-4b31-44d8-963e-750f7e93c137)https://github.com/marina-verkutis/js-calc/assets/124586787/af29183f-4b31-44d8-963e-750f7e93c137"  width="600">
+
+<img src="https://github.com/marina-verkutis/js-calc/assets/124586787/78fdbf99-3f7b-4637-84a5-ec4b7eb1f878"  width="600">
