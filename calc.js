@@ -88,7 +88,7 @@ document.querySelector('.buttons').onclick = (event) => {
     }
 
     if(key === '=') {
-        if (isNaN(num1)) {
+        if (isNaN(num1) || isNaN(num2)) {
             sign = '';
             num1 = '';
             out.textContent = 0;
@@ -106,7 +106,7 @@ document.querySelector('.buttons').onclick = (event) => {
                     num1 = num1 * num2;
                     break;
                 case "/":
-                    if(num2 === '0') {
+                    if(num2.replace(/0*$/,"") === '') {
                         out.textContent = 'ERROR!';
                         num1 = '';
                         num2 = '';
