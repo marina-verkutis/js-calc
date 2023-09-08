@@ -88,32 +88,41 @@ document.querySelector('.buttons').onclick = (event) => {
     }
 
     if(key === '=') {
-        if(num2 === '') num2 = num1;
-        switch (sign) {
-            case "+":
-                num1 = (+num1) + (+num2);
-                break;
-            case "-":
-                num1 = num1 - num2;
-                break;
-            case "X":
-                num1 = num1 * num2;
-                break;
-            case "/":
-                if(num2 === '0') {
-                    out.textContent = 'ERROR!';
-                    num1 = '';
-                    num2 = '';
-                    sign = '';
-                    return;
-                }
-                num1 = parseFloat((num1 / num2).toFixed(2));
-                break;
-            case "%":
-                num1 = parseFloat(((num1 / 100) * num2).toFixed(2));
-                break;
+        if (isNaN(num1)) {
+            sign = '';
+            num1 = '';
+            out.textContent = 0;
         }
-        finish = true;
-        out.textContent = num1;
+        else {
+            if(num2 === '') num2 = num1;
+            switch (sign) {
+                case "+":
+                    num1 = (+num1) + (+num2);
+                    break;
+                case "-":
+                    num1 = num1 - num2;
+                    break;
+                case "X":
+                    num1 = num1 * num2;
+                    break;
+                case "/":
+                    if(num2 === '0') {
+                        out.textContent = 'ERROR!';
+                        num1 = '';
+                        num2 = '';
+                        sign = '';
+                        return;
+                    }
+                    num1 = parseFloat((num1 / num2).toFixed(2));
+                    break;
+                case "%":
+                    num1 = parseFloat(((num1 / 100) * num2).toFixed(2));
+                    break;
+            }
+            finish = true;
+            out.textContent = num1;
+        }
+        
+        
     }
 }
